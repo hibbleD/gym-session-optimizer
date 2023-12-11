@@ -1,2 +1,16 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<!-- Assuming current_day is the day you're interested in -->
+<% current_day_data = @busy_times["Hourly Busy Times"].find { |day| day["name"] == @current_day } %>
+
+<% if current_day_data %>
+  <h2>Busyness Levels for <%= @current_day %></h2>
+  <ul>
+    <% current_day_data["data"].each_with_index do |hourly_data, hour| %>
+      <li>
+        Hour <%= hour + 1 %>:
+        Busyness Level <%= hourly_data %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No data available for <%= @current_day %></p>
+<% end %>
