@@ -19,6 +19,14 @@ class DashboardController < ApplicationController
 
     # Set the current day dynamically
     @current_day = Date.today.strftime("%A")
+    puts "Current Day: #{@current_day}"
+    puts "Busy Times: #{@busy_times.inspect}"
+
+    # Assuming "Hourly Busy Times" is the key containing the array of days
+    hourly_busy_times = @busy_times["Hourly Busy Times"]
+
+    @chart_data = hourly_busy_times.find { |day| day["name"] == @current_day }
+    puts "Chart Data: #{@chart_data.inspect}"
 
     # Use @busy_times in your view or for further processing
   end

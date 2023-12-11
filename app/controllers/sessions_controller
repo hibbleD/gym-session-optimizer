@@ -1,0 +1,23 @@
+# app/controllers/sessions_controller.rb
+
+class SessionsController < ApplicationController
+  def create
+   puts ENV['AZURE_APP_ID']
+   puts ENV['AZURE_APP_SECRET']
+    auth_hash = request.env['omniauth.auth']
+    
+    # Save necessary information to user model or session
+    # Example: current_user.update(provider: auth_hash['provider'], uid: auth_hash['uid'], token: auth_hash['credentials']['token'])
+
+    redirect_to root_path, notice: 'Successfully authenticated with Microsoft Graph!'
+  end
+
+  def failure
+    redirect_to root_path, alert: 'Authentication with Microsoft Graph failed.'
+  end
+
+  def destroy
+    # Log out logic, if needed
+    redirect_to root_path, notice: 'Logged out successfully.'
+  end
+end

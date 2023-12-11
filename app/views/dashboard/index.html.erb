@@ -1,4 +1,10 @@
 <!-- Assuming current_day is the day you're interested in -->
+
+<%# Render the bar graph using Chartkick %>
+<%= column_chart @chart_data["data"], discrete: true, library: { title: "Busyness Level for #{@current_day}" } %> 
+
+
+
 <% current_day_data = @busy_times["Hourly Busy Times"].find { |day| day["name"] == @current_day } %>
 
 <% if current_day_data %>
