@@ -10,3 +10,4 @@ import "controllers";
 // Import Chartkick
 import Chartkick from 'chartkick';
 window.Chartkick = Chartkick;
+import * as bootstrap from "bootstrap"

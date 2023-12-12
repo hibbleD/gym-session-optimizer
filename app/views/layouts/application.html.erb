@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbolinks-track": true %>
 
     <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js' %>
     <%= javascript_include_tag 'chartkick' %>
@@ -16,7 +16,8 @@
   <body>
     <header>
       <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :get, data: { turbolinks: false } %>
+        <%= link_to 'Edit Profile', edit_user_registration_path %>
       <% else %>
         <%= link_to 'Login', new_user_session_path %>
       <% end %>

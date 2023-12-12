@@ -19,8 +19,6 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  attr_accessor :preferred_start_time, :preferred_end_time
-  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -33,8 +31,16 @@ class User < ApplicationRecord
 
   private
 
+  def preferred_start_time_formatted
+    preferred_start_time.strftime("%H:%M:%S") if preferred_start_time
+  end
+
+  def preferred_end_time_formatted
+    preferred_end_time.strftime("%H:%M:%S") if preferred_end_time
+  end
+
   def end_time_after_start_time
-    if preferred_end_time <= preferred_start_time
+    if preferred_start_time.present? && preferred_end_time.present? && preferred_end_time <= preferred_start_time
       errors.add(:preferred_end_time, "must be after the start time")
     end
   end
