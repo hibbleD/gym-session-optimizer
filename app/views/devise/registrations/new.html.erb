@@ -1,0 +1,37 @@
+<h2>Sign up</h2>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control', autocomplete: "email" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.input :password, required: true, input_html: { class: 'form-control', autocomplete: "new-password" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control', autocomplete: "new-password" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :preferred_start_time, 'Preferred Start Time', class: 'form-label' %>
+          <%= f.time_select :preferred_start_time, { default: Time.now, minute_step: 30 }, required: true, include_blank: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :preferred_end_time, 'Preferred End Time', class: 'form-label' %>
+          <%= f.time_select :preferred_end_time, { default: Time.now, minute_step: 30 }, required: true, include_blank: true, class: 'form-control' %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>

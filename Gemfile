@@ -10,12 +10,7 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-gem 'omniauth'
-
-gem 'omniauth-microsoft_graph', '~> 1.2'
-
-
-gem 'microsoft_graph', '~> 0.11.0'
+gem 'google-api-client', '~> 0.53.0'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -41,6 +36,8 @@ gem "json"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
+
+gem 'cssbundling-rails'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

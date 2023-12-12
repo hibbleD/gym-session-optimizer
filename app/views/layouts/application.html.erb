@@ -11,16 +11,14 @@
     <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js' %>
     <%= javascript_include_tag 'chartkick' %>
 
-    <!-- <%= link_to 'Sign in with Outlook', '/auth/microsoft_graph', id: 'sign_in' %> -->
-
   </head>
 
   <body>
     <header>
-      <% if current_user %>
-        <%= link_to 'Logout', '/logout' %>
+      <% if user_signed_in? %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to 'Login with Microsoft', '/auth/microsoft_graph' %>
+        <%= link_to 'Login', new_user_session_path %>
       <% end %>
     </header>
     <%= yield %>

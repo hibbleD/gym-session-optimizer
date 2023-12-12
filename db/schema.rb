@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_11_025508) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_12_154206) do
   create_table "busy_times", force: :cascade do |t|
     t.string "day_of_week"
     t.integer "hour"
@@ -47,8 +47,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_025508) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "preferred_start_time"
-    t.datetime "preferred_end_time"
+    t.time "preferred_start_time", precision: 6
+    t.time "preferred_end_time", precision: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
