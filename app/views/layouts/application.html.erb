@@ -14,14 +14,38 @@
   </head>
 
   <body>
-    <header>
-      <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, method: :get, data: { turbolinks: false } %>
-        <%= link_to 'Edit Profile', edit_user_registration_path %>
-      <% else %>
-        <%= link_to 'Login', new_user_session_path %>
-      <% end %>
-    </header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <%= link_to "Gym Session Optimizer", root_path, class: "navbar-brand" %>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Logout', destroy_user_session_path, method: :get, data: { turbolinks: false }, class: "nav-link" %>
+            </li>
+            <% unless current_page?(edit_user_registration_path) %>
+              <li class="nav-item">
+                <%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Login', new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
     <%= yield %>
-  </body>
+  </div>
+</body>
+
 </html>
