@@ -22,4 +22,9 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+  - type: python
+    name: python3 # name for the Python service
+    plan: free # make sure to set this to free or you'll get billed $$$
+    buildCommand: # Add your Python build command here if needed
+    startCommand: python3 your-python-script.py # Command to start your Python 3 code
         
