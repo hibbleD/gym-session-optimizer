@@ -1,8 +1,8 @@
 databases:
-- name: gym_optimizer
-plan: free
-databaseName: gym_optimizer
-user: gym_optimizer
+  - name: gym_optimizer
+    plan: free
+    databaseName: gym_optimizer
+    user: gym_optimizer
 
 
 services:
