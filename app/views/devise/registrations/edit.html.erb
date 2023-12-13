@@ -1,0 +1,59 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-group">
+    <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' }, wrapper: false %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.input :password, hint: "leave it blank if you don't want to change it", required: false, input_html: { class: 'form-control', autocomplete: "new-password" }, wrapper: false %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :password_confirmation, required: false, input_html: { class: 'form-control', autocomplete: "new-password" }, wrapper: false %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { class: 'form-control', autocomplete: "current-password" }, wrapper: false %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :preferred_start_time, 'Preferred Start Time', class: 'form-label' %>
+    <%= f.time_select :preferred_start_time, { default: Time.now, minute_step: 30 }, required: true, include_blank: true, input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :preferred_end_time, 'Preferred End Time', class: 'form-label' %>
+    <%= f.time_select :preferred_end_time, { default: Time.now, minute_step: 30 }, required: true, include_blank: true, input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<!-- Google Calendar Integration -->
+<div class="google-calendar-integration">
+  <h3>Google Calendar Integration</h3>
+  <% if current_user.identity %>
+    <%= link_to 'Logout of Google Calendar', logout_google_calendar_path, method: :get, class: 'btn btn-warning' %>
+  <% else %>
+    <%= link_to 'Login with Google Calendar', login_google_calendar_path, class: 'btn btn-success' %>
+  <% end %>
+</div>
+
+<hr>
+
+<h3>Cancel my account</h3>
+
+<div>
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %>
+</div>
+
+<%= link_to "Back", :back, class: 'btn btn-secondary' %>

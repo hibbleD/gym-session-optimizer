@@ -1,3 +1,13 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "controllers"
+// Configure your import map in config/importmap.rb.
+
+import "Chart.bundle";
+import "chartkick/chart.js";
+import "chart.js"
+import "@hotwired/turbo-rails";
+import "controllers";
+
+
+// Import Chartkick
+import Chartkick from 'chartkick';
+window.Chartkick = Chartkick;
+import * as bootstrap from "bootstrap"

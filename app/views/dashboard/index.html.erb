@@ -1,0 +1,51 @@
+<div class="container mt-3">
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <% if @chart_data && @chart_data["data"].any? %>
+    <% formatted_data = @chart_data["data"].map.with_index { |level, index| ["Hour #{index + 1}", level] } %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center mb-3">Busyness Levels for <%= @current_day %></h2>
+        <%= column_chart formatted_data, discrete: true, library: { title: { text: "Busyness Level for #{@current_day}", style: { fontSize: '20px', fontWeight: 'bold' } } } %>
+      </div>
+    </div>
+    <hr>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= button_to 'Recommend Time', recommend_time_path, method: :get, class: 'btn btn-primary' %>
+    </div>
+
+    <% if @recommended_time %>
+      <div class="d-flex justify-content-center mb-3">
+        <p><strong>Your Recommended Time:</strong> <%= @recommended_time %></p>
+      </div>
+    <% end %>
+
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <ul class="list-group">
+          <% @chart_data["data"].each_with_index do |hourly_data, hour| %>
+            <li class="list-group-item">
+              Hour <%= hour + 1 %>:
+              <span class="badge bg-secondary float-end">Busyness Level <%= hourly_data %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-warning" role="alert">
+      No data available for <%= @current_day %>.
+    </div>
+  <% end %>
+</div>
