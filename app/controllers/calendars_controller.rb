@@ -49,7 +49,7 @@ class CalendarsController < ApplicationController
     else
       flash[:alert] = "You are not logged in to Google Calendar."
     end
-    redirect_to root_path # or wherever appropriate
+    redirect_to root_path 
   end
 
   def fetch_user_calendar_events(user)
@@ -62,7 +62,7 @@ class CalendarsController < ApplicationController
     start_time = today.beginning_of_day.rfc3339
     end_time = today.end_of_day.rfc3339
 
-    calendar_id = "primary" # Or use the appropriate calendar ID
+    calendar_id = "primary" 
     events = service.list_events(calendar_id, time_min: start_time, time_max: end_time)
 
     extract_event_data(events.items)

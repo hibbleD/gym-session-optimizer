@@ -41,14 +41,14 @@ class DashboardController < ApplicationController
 
   def run_recommendation_algorithm
     calendar_events = CalendarsController.new.fetch_user_calendar_events(@user)
-    preferred_start_hour = @user.preferred_start_time&.in_time_zone("Central Time (US & Canada)")&.hour
-    preferred_end_hour = @user.preferred_end_time&.in_time_zone("Central Time (US & Canada)")&.hour
+    preferred_start_hour = @user.preferred_start_time&.in_time_zone('Central Time (US & Canada)')&.hour
+    preferred_end_hour = @user.preferred_end_time&.in_time_zone('Central Time (US & Canada)')&.hour
     today_busy_times = @chart_data["data"]
 
-    puts "Calendar events: #{calendar_events}" # Add this logging statement
-    puts "Preferred start hour: #{preferred_start_hour}" # Add this logging statement
-    puts "Preferred end hour: #{preferred_end_hour}" # Add this logging statement
-    puts "Today's busy times: #{today_busy_times}" # Add this logging statement
+    puts "Calendar events: #{calendar_events}" 
+    puts "Preferred start hour: #{preferred_start_hour}" 
+    puts "Preferred end hour: #{preferred_end_hour}"
+    puts "Today's busy times: #{today_busy_times}" 
 
     @recommended_time = recommend_gym_time(today_busy_times, calendar_events, preferred_start_hour, preferred_end_hour)
   end
@@ -66,10 +66,11 @@ class DashboardController < ApplicationController
       calendar_events.any? { |event| event_during_hour?(event, hour) }
     end
 
-    puts "Available hours: #{available_hours}" # Add this logging statement
+    puts "Available hours: #{available_hours}" 
 
     least_busy_hour = available_hours.min_by { |hour| busy_times[hour] }
-    puts "Least busy hour: #{least_busy_hour}" # Add this logging statement
+    puts "Least busy hour: #{least_busy_hour}" 
+
     format_recommended_time(least_busy_hour)
   end
 
