@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_12_154206) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_13_161722) do
   create_table "busy_times", force: :cascade do |t|
     t.string "day_of_week"
     t.integer "hour"
@@ -27,6 +27,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_154206) do
     t.string "google_place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider"
+    t.string "access_token"
+    t.string "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
   create_table "recommendations", force: :cascade do |t|
@@ -56,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_12_154206) do
   end
 
   add_foreign_key "busy_times", "gyms"
+  add_foreign_key "identities", "users"
   add_foreign_key "recommendations", "gyms"
   add_foreign_key "recommendations", "users"
 end

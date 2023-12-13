@@ -24,6 +24,8 @@ class User < ApplicationRecord
 
   has_many :recommendations
 
+  has_one :identity
+
   validates :preferred_start_time, presence: true
   validates :preferred_end_time, presence: true
 
