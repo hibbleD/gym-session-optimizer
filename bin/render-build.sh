@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # exit on error
 set -o errexit
-apt install python3.8
+sudo apt install python3.8
 bundle install
 
 # For Ruby on Rails apps uncomment these lines to precompile assets and migrate your database.
