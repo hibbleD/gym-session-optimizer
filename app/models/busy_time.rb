@@ -21,5 +21,4 @@
 class BusyTime < ApplicationRecord
   belongs_to :gym
 
-  enum status: { not_busy: "Not busy", moderately_busy: "Moderately busy", busy: "Busy" }
 end
