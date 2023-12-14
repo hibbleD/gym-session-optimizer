@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "dashboard#index"
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { registrations: "user/registrations" }
   get "dashboard/index"
   get "dashboard/recommend_time", to: "dashboard#recommend_time", as: "recommend_time"
 

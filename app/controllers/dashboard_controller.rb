@@ -20,12 +20,11 @@ class DashboardController < ApplicationController
     render :index
   end
 
-  private
 
   def load_busy_times_data
     api_key = ENV["GOOGLE_MAPS_API_KEY"]
     place_id = "ChIJ3RSaYE_LD4gRts0TShMrFjc"
-    script_output = `python3 /workspaces/gym-session-optimizer/get_busy_times.py #{api_key} #{place_id}`
+    script_output = `python3 /workspaces/gym-session-optimizer/scripts/get_busy_times.py #{api_key} #{place_id}`
 
     begin
       @busy_times = JSON.parse(script_output)["Hourly Busy Times"]
