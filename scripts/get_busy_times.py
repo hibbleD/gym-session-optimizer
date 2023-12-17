@@ -1,4 +1,3 @@
-# test.py
 from populartimes import get_id
 import sys
 import json
@@ -39,4 +38,3 @@ if __name__ == "__main__":
 
     # Convert the dictionary to a JSON string and print it
     print(json.dumps(data))
-

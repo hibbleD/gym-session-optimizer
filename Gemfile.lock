@@ -121,6 +121,8 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     diffy (3.4.2)
+    dockerfile-rails (1.5.14)
+      rails (>= 3.0.0)
     domain_name (0.6.20231109)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -387,6 +389,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sentry-rails (5.15.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.15.0)
+    sentry-ruby (5.15.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     signet (0.14.1)
       addressable (~> 2.3)
       faraday (>= 0.17.3, < 2.0)
@@ -479,6 +486,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  dockerfile-rails (>= 1.5)
   dotenv-rails
   draft_generators
   draft_matchers
@@ -501,6 +509,8 @@ DEPENDENCIES
   rspec-rails (~> 6.0.0)
   rufo
   selenium-webdriver
+  sentry-rails (~> 5.15)
+  sentry-ruby (~> 5.15)
   signet (~> 0.14.0)
   simple_form
   specs_to_readme

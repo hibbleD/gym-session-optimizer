@@ -120,3 +120,9 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "sentry-ruby", "~> 5.15"
+
+gem "sentry-rails", "~> 5.15"
