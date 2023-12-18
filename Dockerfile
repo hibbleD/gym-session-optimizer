@@ -25,16 +25,6 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl libpq-dev node-gyp pkg-config
 
-# Install Python 3.8.10
-RUN apt-get update -qq && apt-get install -y make build-essential libssl-dev zlib1g-dev \
-    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
-RUN curl https://pyenv.run | bash
-ENV PATH="/root/.pyenv/bin:$PATH"
-RUN pyenv install 3.8.10 && pyenv global 3.8.10
-
-# Install populartimes
-RUN pip3 install git+https://github.com/m-wrzr/populartimes
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=18.18.2
