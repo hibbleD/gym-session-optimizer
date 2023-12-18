@@ -18,13 +18,18 @@ ENV RAILS_ENV="production" \
 RUN gem update --system --no-document && \
     gem install -N bundler
 
-
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl libpq-dev node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y build-essential curl libpq-dev node-gyp pkg-config
+
+# Install Python 3.8.10
+RUN apt-get install -y python3.8 python3-pip
+
+# Install populartimes
+RUN pip3 install git+https://github.com/m-wrzr/populartimes
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=18.18.2
@@ -56,7 +61,6 @@ RUN chmod +x bin/*
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
-
 
 # Final stage for app image
 FROM base
