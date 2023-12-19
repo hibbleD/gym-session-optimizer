@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Rails Template</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+    <%# change this to your app name %>
+    <title>Rails Template</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag "application", "data-turbolinks-track": true %>
+    <%= stylesheet_link_tag "application", "data-turbolinks-track": true %>
 
-  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.3.1.slim.min.js' %>
-  <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' %>
-  <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js' %>
-  <%= javascript_include_tag 'chartkick' %>
+    <%= javascript_include_tag 'https://code.jquery.com/jquery-3.3.1.slim.min.js' %>
+    <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' %>
+    <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js' %>
+    <%= javascript_include_tag 'chartkick' %>
 
-</head>
-
-    <body>
+  </head>
+  <%# indentation is off %>
+  <body>
+    <%# could put navbar in a partial %>
     <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <%= link_to "Gym Session Optimizer", root_path, class: "navbar-brand" %>
+      <div class="container-fluid">
+        <%= link_to "Gym Session Optimizer", root_path, class: "navbar-brand" %>
 
-    <div class="navbar-nav ms-auto">
-      <% if user_signed_in? %>
-        <% unless current_page?(edit_user_registration_path) %>
-          <li class="nav-item">
-            <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
-        </li>
-      <% end %>
-    </div>
-  </div>
-</nav>
+        <div class="navbar-nav ms-auto">
+          <% if user_signed_in? %>
+            <% unless current_page?(edit_user_registration_path) %>
+              <li class="nav-item">
+                <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+            <li class="nav-item">
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+        </div>
+      </div>
+    </nav>
     <div class="container mt-4">
       <%= yield %>
     </div>
   </body>
-
 </html>

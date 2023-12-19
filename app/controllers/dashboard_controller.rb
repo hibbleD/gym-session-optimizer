@@ -40,6 +40,8 @@ class DashboardController < ApplicationController
   end
 
   def run_recommendation_algorithm
+    # seems like this should be in a service object (not a controller)
+    # https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial
     calendar_events = CalendarsController.new.fetch_user_calendar_events(@user)
     preferred_start_hour = @user.preferred_start_time&.in_time_zone('Central Time (US & Canada)')&.hour
     preferred_end_hour = @user.preferred_end_time&.in_time_zone('Central Time (US & Canada)')&.hour
