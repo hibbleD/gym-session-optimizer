@@ -1,5 +1,6 @@
 class GymService
   def self.get_busy_times(api_key, place_id)
+    # running a python script from ruby seems weird 🤔
     # Set the correct path to your Python script
     script_path = Rails.root.join('get_busy_times.py').to_s
 
